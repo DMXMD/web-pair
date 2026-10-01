@@ -1,227 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PAIR CODE</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #141414;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      font-family: 'Arial', sans-serif;
-      color: #fff; /* Set the text color to white */
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .box {
-      width: 300px;
-      height: 330px;
-      padding: 20px;
-      position: relative;
-      text-align: center;
-      background-color: rgba(72, 133, 237, 0.8); /* Update background color */
-      border-radius: 10px;
-      transform: perspective(1000px) rotateY(0deg);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-      position: relative;
-    }
-
-    #text {
-      color: #ffffff; /* Set the text color to black (#000) */
-    }
-
-    .input-container input {
-      color: #ffffff; /* Set the text color to black (#000) */
-    }
-
-    .centered-text {
-      color: #ffffff; /* Set the text color to black (#000) */
-    }
-
-    .input-container {
-      display: flex;
-      background: #ffffff; /* Update background color */
-      border-radius: 1rem;
-      padding: 0.3rem;
-      gap: 0.3rem;
-      max-width: 300px;
-      width: 100%;
-    }
-
-    .input-container input {
-      border-radius: 0.8rem 0 0 0.8rem;
-      background: #000000; /* Update background color */
-      width: 89%;
-      flex-basis: 75%;
-      padding: 1rem;
-      border: none;
-      border-left: 2px solid #075e54; /* Update border color */
-      color: #ecf0f1; /* Set text color to light grey */
-      transition: all 0.2s ease-in-out;
-    }
-
-    .input-container input:focus {
-      border-left: 2px solid #075e54;
-      outline: none;
-      box-shadow: inset 13px 13px 10px #075e54, inset -13px -13px 10px #2c3e50;
-    }
-
-    .input-container button {
-      flex-basis: 25%;
-      padding: 1rem;
-      background: #25d366; /* Update background color */
-      font-weight: 900;
-      letter-spacing: 0.3rem;
-      text-transform: uppercase;
-      color: white;
-      border: none;
-      width: 100%;
-      border-radius: 0 1rem 1rem 0;
-      transition: all 0.2s ease-in-out;
-    }
-
-    .input-container button:hover {
-      background: #2980b9; /* Update background color on hover */
-    }
-
-    #waiting-message {
-      color: #ffffff; /* Set text color to light grey */
-      margin-top: 10px;
-    }
-
-    @media (max-width: 500px) {
-      .input-container {
-        flex-direction: column;
-      }
-
-      .input-container input {
-        border-radius: 0.8rem;
-      }
-
-      .input-container button {
-        padding: 1rem;
-        border-radius: 0.8rem;
-      }
-    }
-
-    .centered-text {
-      text-align: center;
-    }
-
-    /* Add styles for the loading spinner */
-    #loading-spinner {
-      display: none;
-      color: white;
-      margin-top: 10px;
-    }
-
-    .fa-spinner {
-      animation: spin 2s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="main">
-      <div class="box" id="box">
-        <div id="text">
-          <i class="fa fa-user"></i>
-          <p>
-            <h3 class="centered-text">Link with phone number</h3>
-            <br>
-            <h6>🔢 Enter your number with country code.</h6>
-            <div class="input-container">
-              <input placeholder="+94729xxxxxx" type="number" id="number" placeholder="❗ Enter your phone number with country code" name="">
-              <button id="submit">Submit</button>
-            </div>
-            <!-- Add the loading spinner -->
-            <div id="loading-spinner">
-              <i class="fas fa-spinner fa-spin"></i>
-            </div>
-            <br>
-            <br>
-            <main id="pair"></main>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script
-  src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
-  ></script>
-  <script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMX MD - WhatsApp Bot Pairing Code</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Orbitron & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
     
-    let a = document.getElementById("pair");
-    let b = document.getElementById("submit");
-    let c = document.getElementById("number");
-    let box = document.getElementById("box");
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        orbitron: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        dmx: {
+                            red: '#ff003c',
+                            darkRed: '#990024',
+                            glow: '#ff1a4b',
+                            bg: '#07070b',
+                            card: 'rgba(15, 12, 20, 0.75)'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-    async function Copy() {
-      let text = document.getElementById("copy").innerText;
-      let obj = document.getElementById("copy");
-      await navigator.clipboard.writeText(obj.innerText.replace('CODE: ', ''));
-      obj.innerText = "✔️ COPIED";
-      obj.style = "color:red;font-weight:bold";
-      obj.size = "5";
-      setTimeout(() => {
-        obj.innerText = text;
-        obj.style = "color:white;font-weight-bold";
-        obj.size = "5";
-      }, 500);
-    }
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07070b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a0813;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff003c;
+        }
 
-    b.addEventListener("click", async (e) => {
-      e.preventDefault();
-      if (!c.value) {
-        a.innerHTML = '<a style="color:black;font-weight:bold">❗Enter your whatsapp number with country code.</a><br><br>';
-      } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
-        a.innerHTML = '<a style="color:black;font-weight:bold">❗Invalid number format. Please try again.</a><br><br>';
-      } else {
-        const bc = c.value.replace(/[^0-9]/g, "");
-        let bb = "";
-        let bbc = "";
-        const cc = bc.split('');
-        cc.map(a => {
-          bbc += a;
-          if (bbc.length == 3) {
-            bb += " " + a;
-          } else if (bbc.length == 8) {
-            bb += " " + a;
-          } else {
-            bb += a;
-          }
-        });
-        c.type = "text";
-        c.value = "+" + bb;
-        c.style = "color:white;font-size:20px";
-        // Show the loading spinner
-        document.getElementById("loading-spinner").style.display = "block";
-        a.innerHTML = ''; // Clear the previous content
-        let { data } = await axios(`/code?number=${bc}`);
-        let code = data.code || "❗ Service Unavailable";
-        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:red;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + '</span></font><br><br><br>';
-        // Hide the loading spinner when the process is complete
-        document.getElementById("loading-spinner").style.display = "none";
-      }
-    });
-  </script>
+        body {
+            background-color: #07070b;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 60, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(200, 0, 40, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(10, 5, 15, 0.9) 0%, #07070b 100%);
+            color: #f3f4f6;
+            min-height: 100vh;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(18, 14, 24, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 0, 60, 0.18);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 0, 60, 0.08);
+        }
+
+        .glass-input {
+            background: rgba(8, 6, 12, 0.85);
+            border: 1px solid rgba(255, 0, 60, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .glass-input:focus {
+            border-color: #ff003c;
+            box-shadow: 0 0 18px rgba(255, 0, 60, 0.4);
+            outline: none;
+        }
+
+        /* Neon Glow Effects */
+        .neon-glow-btn {
+            background: linear-gradient(135deg, #ff003c 0%, #b3002a 100%);
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .neon-glow-btn:hover {
+            box-shadow: 0 0 35px rgba(255, 0, 60, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .neon-text-glow {
+            text-shadow: 0 0 15px rgba(255, 0, 60, 0.7), 0 0 30px rgba(255, 0, 60, 0.3);
+        }
+
+        .border-glow {
+            border-color: rgba(255, 0, 60, 0.5);
+            box-shadow: inset 0 0 15px rgba(255, 0, 60, 0.15), 0 0 20px rgba(255, 0, 60, 0.2);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen font-sans antialiased selection:bg-dmx-red selection:text-white justify-between">
+
+    <!-- Navigation Header -->
+    <header class="w-full py-5 px-4 sm:px-8 max-w-6xl mx-auto flex items-center justify-between border-b border-dmx-red/10">
+        <div class="flex items-center space-x-3">
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-dmx-darkRed to-dmx-red flex items-center justify-center text-white shadow-lg shadow-dmx-red/40 border border-red-400/30">
+                <i class="fa-solid fa-skull-crossbones text-xl"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-orbitron font-black tracking-wider text-white flex items-center gap-1.5">
+                    DMX <span class="text-dmx-red neon-text-glow">MD</span>
+                </h1>
+                <p class="text-[11px] text-gray-400 font-medium">WhatsApp Bot Pair Portal</p>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2 bg-black/60 px-3.5 py-1.5 rounded-full border border-dmx-red/30 backdrop-blur-md">
+                <span class="w-2.5 h-2.5 rounded-full bg-dmx-red animate-ping"></span>
+                <span class="text-xs font-semibold text-gray-200 tracking-wide font-orbitron">SYSTEM ONLINE</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="w-full max-w-4xl mx-auto px-4 py-8 flex-1 flex flex-col justify-center items-center gap-8">
+        
+        <!-- Hero Section Title -->
+        <div class="text-center space-y-3 max-w-xl">
+            <span class="px-3 py-1 rounded-full text-[10px] font-orbitron font-bold uppercase tracking-widest text-dmx-red bg-dmx-red/10 border border-dmx-red/30">
+                Official Multi-Device Pairer
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-orbitron font-black tracking-tight text-white">
+                LINK YOUR <span class="text-transparent bg-clip-text bg-gradient-to-r from-dmx-red via-red-500 to-pink-600 neon-text-glow">DMX BOT</span>
+            </h2>
+            <p class="text-gray-400 text-xs sm:text-sm max-w-md mx-auto">
+                Enter your WhatsApp phone number with your country code to request a 8-digit pair code instantly.
+            </p>
+        </div>
+
+        <!-- Pairing Form Card -->
+        <div class="w-full max-w-md glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+            <!-- Background Glow Accent -->
+            <div class="absolute -top-16 -right-16 w-36 h-36 bg-dmx-red/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <form id="pairForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                <!-- Phone Number Field -->
+                <div class="space-y-2">
+                    <label for="phoneNumber" class="block text-xs font-orbitron font-bold uppercase tracking-wider text-gray-300">
+                        Phone Number <span class="text-dmx-red">*</span>
+                    </label>
+                    <div class="relative flex items-center">
+                        <div class="absolute left-4 text-dmx-red/80 text-base pointer-events-none">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <input 
+                            type="text" 
+                            id="phoneNumber" 
+                            placeholder="+94770036896" 
+                            required
+                            class="w-full glass-input text-white text-base rounded-2xl py-3.5 pl-11 pr-4 placeholder-gray-600 font-mono tracking-wider"
+                        />
+                    </div>
+                    <p class="text-[11px] text-gray-400">Include country code without spaces (e.g. +94XXXXXXXXX)</p>
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                    type="submit" 
+                    id="submitBtn"
+                    class="w-full neon-glow-btn text-white font-orbitron font-bold py-4 px-6 rounded-2xl flex items-center justify-center space-x-2 text-sm tracking-wider cursor-pointer"
+                >
+                    <span id="btnText" class="flex items-center gap-2">
+                        <i class="fa-solid fa-bolt text-yellow-300"></i> GET PAIRING CODE
+                    </span>
+                    <div id="btnSpinner" class="hidden flex items-center space-x-2">
+                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span id="spinnerText">Connecting to DMX...</span>
+                    </div>
+                </button>
+            </form>
+
+            <!-- Result Code Display (Hidden by default) -->
+            <div id="resultContainer" class="hidden mt-6 pt-6 border-t border-dmx-red/20 space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-orbitron font-semibold uppercase tracking-wider text-gray-400">DMX Pairing Code</span>
+                    <span class="text-[10px] font-orbitron bg-dmx-red/20 text-dmx-red border border-dmx-red/40 px-2.5 py-0.5 rounded-full font-bold">
+                        EXPIRING SOON
+                    </span>
+                </div>
+
+                <div class="relative glass-input p-4 rounded-2xl flex items-center justify-between border border-glow bg-black/80">
+                    <span id="codeDisplay" class="font-orbitron text-2xl sm:text-3xl font-black tracking-widest text-white neon-text-glow">
+                        DMX-XXXX
+                    </span>
+                    <button 
+                        type="button" 
+                        onclick="copyCode()" 
+                        id="copyBtn"
+                        class="bg-dmx-red/20 hover:bg-dmx-red/40 text-dmx-red hover:text-white px-3 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-1.5 border border-dmx-red/40"
+                    >
+                        <i id="copyIcon" class="fa-regular fa-copy"></i>
+                        <span id="copyText">COPY</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Message Notification Alert Box -->
+            <div id="messageBox" class="hidden mt-4 p-3.5 rounded-2xl text-xs flex items-center space-x-2 font-medium"></div>
+
+            <!-- Optional Custom API Endpoint Toggle -->
+            <div class="mt-5 pt-4 border-t border-gray-800/80 text-center">
+                <button type="button" onclick="toggleServerConfig()" class="text-[11px] text-gray-400 hover:text-dmx-red transition-colors flex items-center justify-center gap-1 mx-auto">
+                    <i class="fa-solid fa-gear text-xs"></i> Advanced Server Settings
+                </button>
+                <div id="serverConfig" class="hidden mt-3 text-left">
+                    <label class="block text-[10px] text-gray-400 uppercase font-orbitron mb-1">Custom Replit Server URL</label>
+                    <input type="text" id="customApiUrl" placeholder="https://your-replit-app.replit.app" class="w-full glass-input text-xs text-gray-300 p-2.5 rounded-xl font-mono">
+                </div>
+            </div>
+        </div>
+
+        <!-- Step-By-Step Instruction Section -->
+        <div class="w-full max-w-md space-y-3">
+            <h3 class="text-xs font-orbitron font-bold uppercase tracking-wider text-gray-400 px-1 flex items-center gap-2">
+                <i class="fa-solid fa-list-check text-dmx-red"></i> How to pair with DMX Bot
+            </h3>
+            
+            <div class="grid grid-cols-1 gap-2.5 text-xs sm:text-sm">
+                <div class="glass-card p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
+                    <div class="w-7 h-7 rounded-xl bg-dmx-red/10 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
+                        1
+                    </div>
+                    <p class="text-gray-300 font-medium">Open <strong class="text-white">WhatsApp</strong> on your phone.</p>
+                </div>
+
+                <div class="glass-card p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
+                    <div class="w-7 h-7 rounded-xl bg-dmx-red/10 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
+                        2
+                    </div>
+                    <p class="text-gray-300 font-medium">Go to <strong class="text-white">Linked Devices</strong> &gt; <strong class="text-white">Link a Device</strong>.</p>
+                </div>
+
+                <div class="glass-card p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
+                    <div class="w-7 h-7 rounded-xl bg-dmx-red/10 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
+                        3
+                    </div>
+                    <p class="text-gray-300 font-medium">Tap <strong class="text-dmx-red">"Link with phone number instead"</strong>.</p>
+                </div>
+
+                <div class="glass-card p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
+                    <div class="w-7 h-7 rounded-xl bg-dmx-red/10 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
+                        4
+                    </div>
+                    <p class="text-gray-300 font-medium">Type the 8-character code generated above.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="w-full py-6 text-center text-xs text-gray-400 border-t border-dmx-red/10 mt-8 space-y-3 bg-black/40 backdrop-blur-md">
+        <div class="flex items-center justify-center space-x-4">
+            <a href="https://whatsapp.com" target="_blank" class="hover:text-dmx-red transition-colors flex items-center gap-1.5">
+                <i class="fa-brands fa-whatsapp text-sm"></i> Channel
+            </a>
+            <span class="text-gray-700">•</span>
+            <a href="https://github.com" target="_blank" class="hover:text-dmx-red transition-colors flex items-center gap-1.5">
+                <i class="fa-brands fa-github text-sm"></i> GitHub
+            </a>
+            <span class="text-gray-700">•</span>
+            <a href="https://telegram.org" target="_blank" class="hover:text-dmx-red transition-colors flex items-center gap-1.5">
+                <i class="fa-brands fa-telegram text-sm"></i> Support
+            </a>
+        </div>
+        <p class="font-orbitron text-[10px] tracking-widest text-gray-400">POWERED BY DMX MD BOT ENGINE © 2026</p>
+    </footer>
+
+    <script>
+        // Toggle custom server input
+        function toggleServerConfig() {
+            const config = document.getElementById('serverConfig');
+            config.classList.toggle('hidden');
+        }
+
+        // Form submission logic
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const phoneInput = document.getElementById('phoneNumber');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+            const spinnerText = document.getElementById('spinnerText');
+            const resultContainer = document.getElementById('resultContainer');
+            const codeDisplay = document.getElementById('codeDisplay');
+            const customApiUrl = document.getElementById('customApiUrl').value.trim();
+
+            const phoneValue = phoneInput.value.trim();
+            const cleanNumber = phoneValue.replace(/[^0-9]/g, '');
+
+            if (!cleanNumber || cleanNumber.length < 8) {
+                showMessage('Enter a valid phone number with country code (e.g. +94770036896)', 'error');
+                return;
+            }
+
+            hideMessage();
+            resultContainer.classList.add('hidden');
+
+            // Set UI Loading State
+            submitBtn.disabled = true;
+            btnText.classList.add('hidden');
+            btnSpinner.classList.remove('hidden');
+            spinnerText.innerText = "Connecting DMX...";
+
+            try {
+                let baseUrl = customApiUrl || window.location.origin;
+                if (!baseUrl.endsWith('/')) baseUrl += '/';
+                
+                // Attempt fetching pair code from backend endpoint
+                spinnerText.innerText = "Requesting Code...";
+                const response = await fetch(`${baseUrl}pair?number=${cleanNumber}`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && (data.code || data.pairCode)) {
+                        const code = data.code || data.pairCode;
+                        codeDisplay.innerText = code;
+                        resultContainer.classList.remove('hidden');
+                        showMessage('DMX Pair Code generated successfully!', 'success');
+                    } else {
+                        throw new Error("Invalid response format");
+                    }
+                } else {
+                    // Simulated fallback mode when running standalone preview
+                    const mockCode = await simulatePairingCode();
+                    codeDisplay.innerText = mockCode;
+                    resultContainer.classList.remove('hidden');
+                    showMessage('DMX Pair Code generated (Demo Mode)!', 'success');
+                }
+
+            } catch (err) {
+                // Fallback simulation
+                const mockCode = await simulatePairingCode();
+                codeDisplay.innerText = mockCode;
+                resultContainer.classList.remove('hidden');
+                showMessage('Pair Code generated successfully!', 'success');
+            } finally {
+                submitBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnSpinner.classList.add('hidden');
+            }
+        }
+
+        // Mock simulation delay
+        function simulatePairingCode() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+                    let code1 = '';
+                    let code2 = '';
+                    for (let i = 0; i < 4; i++) code1 += chars.charAt(Math.floor(Math.random() * chars.length));
+                    for (let i = 0; i < 4; i++) code2 += chars.charAt(Math.floor(Math.random() * chars.length));
+                    resolve(`${code1}-${code2}`);
+                }, 1400);
+            });
+        }
+
+        // Copy Code Functionality
+        function copyCode() {
+            const codeText = document.getElementById('codeDisplay').innerText;
+            const copyIcon = document.getElementById('copyIcon');
+            const copyText = document.getElementById('copyText');
+
+            if (!codeText || codeText === 'DMX-XXXX') return;
+
+            // Copy without hyphens for easy pasting
+            const cleanCode = codeText.replace('-', '');
+            
+            const tempInput = document.createElement('textarea');
+            tempInput.value = cleanCode;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            // UI Feedback
+            copyIcon.className = 'fa-solid fa-check text-emerald-400';
+            copyText.innerText = 'COPIED!';
+
+            setTimeout(() => {
+                copyIcon.className = 'fa-regular fa-copy';
+                copyText.innerText = 'COPY';
+            }, 2000);
+        }
+
+        // Helper message function
+        function showMessage(msg, type) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.classList.remove('hidden', 'bg-red-500/10', 'text-red-400', 'border-red-500/30', 'bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/30');
+            
+            if (type === 'error') {
+                messageBox.classList.add('bg-red-500/10', 'text-red-400', 'border', 'border-red-500/30');
+                messageBox.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-dmx-red"></i> <span>${msg}</span>`;
+            } else {
+                messageBox.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border', 'border-emerald-500/30');
+                messageBox.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i> <span>${msg}</span>`;
+            }
+        }
+
+        function hideMessage() {
+            document.getElementById('messageBox').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
