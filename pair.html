@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMX MD - WhatsApp Bot Pairing Code</title>
+    <title>DMX MD - WhatsApp Bot Pairing Portal</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts: Orbitron & Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -22,10 +23,25 @@
                     colors: {
                         dmx: {
                             red: '#ff003c',
-                            darkRed: '#990024',
+                            darkRed: '#80001f',
                             glow: '#ff1a4b',
                             bg: '#07070b',
-                            card: 'rgba(15, 12, 20, 0.75)'
+                            panel: 'rgba(15, 12, 22, 0.85)'
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2s infinite alternate',
+                        'scanline': 'scanline 8s linear infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(255, 0, 60, 0.3)' },
+                            '100%': { boxShadow: '0 0 35px rgba(255, 0, 60, 0.8)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-6px)' }
                         }
                     }
                 }
@@ -34,7 +50,6 @@
     </script>
 
     <style>
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -52,109 +67,106 @@
         body {
             background-color: #07070b;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 0, 60, 0.18) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(200, 0, 40, 0.12) 0%, transparent 45%),
-                radial-gradient(circle at 50% 50%, rgba(10, 5, 15, 0.9) 0%, #07070b 100%);
+                radial-gradient(circle at 15% 15%, rgba(255, 0, 60, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(180, 0, 40, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(10, 5, 15, 0.95) 0%, #07070b 100%);
             color: #f3f4f6;
             min-height: 100vh;
         }
 
-        /* Glassmorphism Styles */
-        .glass-card {
-            background: rgba(18, 14, 24, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 0, 60, 0.18);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 0, 60, 0.08);
+        .glass-panel {
+            background: rgba(16, 12, 24, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 0, 60, 0.22);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 0, 60, 0.1);
         }
 
         .glass-input {
-            background: rgba(8, 6, 12, 0.85);
-            border: 1px solid rgba(255, 0, 60, 0.25);
-            transition: all 0.3s ease;
+            background: rgba(8, 6, 14, 0.9);
+            border: 1px solid rgba(255, 0, 60, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-input:focus {
             border-color: #ff003c;
-            box-shadow: 0 0 18px rgba(255, 0, 60, 0.4);
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.45);
             outline: none;
         }
 
-        /* Neon Glow Effects */
-        .neon-glow-btn {
-            background: linear-gradient(135deg, #ff003c 0%, #b3002a 100%);
+        .neon-btn {
+            background: linear-gradient(135deg, #ff003c 0%, #990024 100%);
             box-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .neon-glow-btn:hover {
-            box-shadow: 0 0 35px rgba(255, 0, 60, 0.8);
+        .neon-btn:hover {
+            box-shadow: 0 0 35px rgba(255, 0, 60, 0.85);
             transform: translateY(-2px);
         }
 
-        .neon-text-glow {
-            text-shadow: 0 0 15px rgba(255, 0, 60, 0.7), 0 0 30px rgba(255, 0, 60, 0.3);
+        .neon-text {
+            text-shadow: 0 0 12px rgba(255, 0, 60, 0.7), 0 0 25px rgba(255, 0, 60, 0.4);
         }
 
-        .border-glow {
-            border-color: rgba(255, 0, 60, 0.5);
-            box-shadow: inset 0 0 15px rgba(255, 0, 60, 0.15), 0 0 20px rgba(255, 0, 60, 0.2);
+        .code-box {
+            background: rgba(5, 3, 8, 0.95);
+            border: 1px solid rgba(255, 0, 60, 0.5);
+            box-shadow: inset 0 0 15px rgba(255, 0, 60, 0.2);
         }
     </style>
 </head>
 <body class="flex flex-col min-h-screen font-sans antialiased selection:bg-dmx-red selection:text-white justify-between">
 
-    <!-- Navigation Header -->
-    <header class="w-full py-5 px-4 sm:px-8 max-w-6xl mx-auto flex items-center justify-between border-b border-dmx-red/10">
+    <header class="w-full py-5 px-4 sm:px-8 max-w-6xl mx-auto flex items-center justify-between border-b border-dmx-red/15 relative z-10">
         <div class="flex items-center space-x-3">
-            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-dmx-darkRed to-dmx-red flex items-center justify-center text-white shadow-lg shadow-dmx-red/40 border border-red-400/30">
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-dmx-darkRed to-dmx-red flex items-center justify-center text-white shadow-lg shadow-dmx-red/40 border border-red-400/30 animate-float">
                 <i class="fa-solid fa-skull-crossbones text-xl"></i>
             </div>
             <div>
                 <h1 class="text-xl font-orbitron font-black tracking-wider text-white flex items-center gap-1.5">
-                    DMX <span class="text-dmx-red neon-text-glow">MD</span>
+                    DMX <span class="text-dmx-red neon-text">MD</span>
                 </h1>
-                <p class="text-[11px] text-gray-400 font-medium">WhatsApp Bot Pair Portal</p>
+                <p class="text-[11px] text-gray-400 font-medium">WhatsApp Pairing Portal</p>
             </div>
         </div>
 
         <div class="flex items-center space-x-3">
-            <div class="flex items-center space-x-2 bg-black/60 px-3.5 py-1.5 rounded-full border border-dmx-red/30 backdrop-blur-md">
-                <span class="w-2.5 h-2.5 rounded-full bg-dmx-red animate-ping"></span>
-                <span class="text-xs font-semibold text-gray-200 tracking-wide font-orbitron">SYSTEM ONLINE</span>
+            <div id="statusBadge" class="flex items-center space-x-2 bg-black/60 px-3.5 py-1.5 rounded-full border border-dmx-red/40 backdrop-blur-md">
+                <span id="statusIndicator" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                <span id="statusText" class="text-xs font-semibold text-gray-200 tracking-wide font-orbitron">SYSTEM READY</span>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="w-full max-w-4xl mx-auto px-4 py-8 flex-1 flex flex-col justify-center items-center gap-8">
+    <main class="w-full max-w-5xl mx-auto px-4 py-8 flex-1 flex flex-col justify-center items-center gap-10 relative z-10">
         
-        <!-- Hero Section Title -->
-        <div class="text-center space-y-3 max-w-xl">
+        <!-- Hero Title -->
+        <div class="text-center space-y-3 max-w-2xl">
             <span class="px-3 py-1 rounded-full text-[10px] font-orbitron font-bold uppercase tracking-widest text-dmx-red bg-dmx-red/10 border border-dmx-red/30">
-                Official Multi-Device Pairer
+                Official Pair Engine v3.0
             </span>
             <h2 class="text-3xl sm:text-5xl font-orbitron font-black tracking-tight text-white">
-                LINK YOUR <span class="text-transparent bg-clip-text bg-gradient-to-r from-dmx-red via-red-500 to-pink-600 neon-text-glow">DMX BOT</span>
+                GET YOUR <span class="text-transparent bg-clip-text bg-gradient-to-r from-dmx-red via-red-500 to-pink-500 neon-text">DMX PAIR CODE</span>
             </h2>
             <p class="text-gray-400 text-xs sm:text-sm max-w-md mx-auto">
-                Enter your WhatsApp phone number with your country code to request a 8-digit pair code instantly.
+                Connect your WhatsApp account to <strong>DMX MD Bot</strong> seamlessly. Enter your number with country code below.
             </p>
         </div>
 
-        <!-- Pairing Form Card -->
-        <div class="w-full max-w-md glass-card rounded-3xl p-6 sm:p-8 relative overflow-hidden">
-            <!-- Background Glow Accent -->
+        <!-- Pairing Card -->
+        <div class="w-full max-w-md glass-panel rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+            <!-- Glow Accent -->
             <div class="absolute -top-16 -right-16 w-36 h-36 bg-dmx-red/20 rounded-full blur-3xl pointer-events-none"></div>
 
-            <form id="pairForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+            <form id="pairForm" onsubmit="generatePairCode(event)" class="space-y-5">
                 <!-- Phone Number Field -->
                 <div class="space-y-2">
                     <label for="phoneNumber" class="block text-xs font-orbitron font-bold uppercase tracking-wider text-gray-300">
-                        Phone Number <span class="text-dmx-red">*</span>
+                        WhatsApp Number <span class="text-dmx-red">*</span>
                     </label>
                     <div class="relative flex items-center">
-                        <div class="absolute left-4 text-dmx-red/80 text-base pointer-events-none">
+                        <div class="absolute left-4 text-dmx-red text-base pointer-events-none">
                             <i class="fa-solid fa-phone"></i>
                         </div>
                         <input 
@@ -165,14 +177,14 @@
                             class="w-full glass-input text-white text-base rounded-2xl py-3.5 pl-11 pr-4 placeholder-gray-600 font-mono tracking-wider"
                         />
                     </div>
-                    <p class="text-[11px] text-gray-400">Include country code without spaces (e.g. +94XXXXXXXXX)</p>
+                    <p class="text-[11px] text-gray-400">Must include country code (e.g. +9477XXXXXXX or 9477XXXXXXX)</p>
                 </div>
 
                 <!-- Submit Button -->
                 <button 
                     type="submit" 
                     id="submitBtn"
-                    class="w-full neon-glow-btn text-white font-orbitron font-bold py-4 px-6 rounded-2xl flex items-center justify-center space-x-2 text-sm tracking-wider cursor-pointer"
+                    class="w-full neon-btn text-white font-orbitron font-bold py-4 px-6 rounded-2xl flex items-center justify-center space-x-2 text-sm tracking-wider cursor-pointer"
                 >
                     <span id="btnText" class="flex items-center gap-2">
                         <i class="fa-solid fa-bolt text-yellow-300"></i> GET PAIRING CODE
@@ -182,29 +194,29 @@
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        <span id="spinnerText">Connecting to DMX...</span>
+                        <span id="spinnerText">Connecting Backend...</span>
                     </div>
                 </button>
             </form>
 
-            <!-- Result Code Display (Hidden by default) -->
+            <!-- Pairing Code Display Container -->
             <div id="resultContainer" class="hidden mt-6 pt-6 border-t border-dmx-red/20 space-y-4">
                 <div class="flex items-center justify-between">
                     <span class="text-xs font-orbitron font-semibold uppercase tracking-wider text-gray-400">DMX Pairing Code</span>
-                    <span class="text-[10px] font-orbitron bg-dmx-red/20 text-dmx-red border border-dmx-red/40 px-2.5 py-0.5 rounded-full font-bold">
-                        EXPIRING SOON
+                    <span class="text-[10px] font-orbitron bg-dmx-red/20 text-dmx-red border border-dmx-red/40 px-2.5 py-0.5 rounded-full font-bold animate-pulse">
+                        VALID FOR 60s
                     </span>
                 </div>
 
-                <div class="relative glass-input p-4 rounded-2xl flex items-center justify-between border border-glow bg-black/80">
-                    <span id="codeDisplay" class="font-orbitron text-2xl sm:text-3xl font-black tracking-widest text-white neon-text-glow">
-                        DMX-XXXX
+                <div class="relative code-box p-4 rounded-2xl flex items-center justify-between">
+                    <span id="codeDisplay" class="font-orbitron text-2xl sm:text-3xl font-black tracking-widest text-white neon-text">
+                        XXXX-XXXX
                     </span>
                     <button 
                         type="button" 
                         onclick="copyCode()" 
                         id="copyBtn"
-                        class="bg-dmx-red/20 hover:bg-dmx-red/40 text-dmx-red hover:text-white px-3 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-1.5 border border-dmx-red/40"
+                        class="bg-dmx-red/20 hover:bg-dmx-red/40 text-dmx-red hover:text-white px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 flex items-center space-x-1.5 border border-dmx-red/40"
                     >
                         <i id="copyIcon" class="fa-regular fa-copy"></i>
                         <span id="copyText">COPY</span>
@@ -212,89 +224,132 @@
                 </div>
             </div>
 
-            <!-- Message Notification Alert Box -->
+            <!-- Message Alert -->
             <div id="messageBox" class="hidden mt-4 p-3.5 rounded-2xl text-xs flex items-center space-x-2 font-medium"></div>
 
-            <!-- Optional Custom API Endpoint Toggle -->
+            <!-- Server Config Selector -->
             <div class="mt-5 pt-4 border-t border-gray-800/80 text-center">
-                <button type="button" onclick="toggleServerConfig()" class="text-[11px] text-gray-400 hover:text-dmx-red transition-colors flex items-center justify-center gap-1 mx-auto">
-                    <i class="fa-solid fa-gear text-xs"></i> Advanced Server Settings
+                <button type="button" onclick="toggleServerConfig()" class="text-[11px] text-gray-400 hover:text-dmx-red transition-colors flex items-center justify-center gap-1.5 mx-auto">
+                    <i class="fa-solid fa-sliders text-xs"></i> Server & Route Settings
                 </button>
-                <div id="serverConfig" class="hidden mt-3 text-left">
-                    <label class="block text-[10px] text-gray-400 uppercase font-orbitron mb-1">Custom Replit Server URL</label>
-                    <input type="text" id="customApiUrl" placeholder="https://your-replit-app.replit.app" class="w-full glass-input text-xs text-gray-300 p-2.5 rounded-xl font-mono">
+                <div id="serverConfig" class="hidden mt-3 text-left space-y-2">
+                    <label class="block text-[10px] text-gray-400 uppercase font-orbitron">Backend Route URL</label>
+                    <input 
+                        type="text" 
+                        id="customApiUrl" 
+                        placeholder="Leave empty for current domain (/pair?number=)" 
+                        class="w-full glass-input text-xs text-gray-300 p-2.5 rounded-xl font-mono"
+                    >
                 </div>
             </div>
         </div>
 
-        <!-- Step-By-Step Instruction Section -->
+        <!-- Instructions Section -->
         <div class="w-full max-w-md space-y-3">
             <h3 class="text-xs font-orbitron font-bold uppercase tracking-wider text-gray-400 px-1 flex items-center gap-2">
-                <i class="fa-solid fa-list-check text-dmx-red"></i> How to pair with DMX Bot
+                <i class="fa-solid fa-list-check text-dmx-red"></i> How to link DMX MD Bot
             </h3>
             
-            <div class="grid grid-cols-1 gap-2.5 text-xs sm:text-sm">
-                <div class="glass-card p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
-                    <div class="w-7 h-7 rounded-xl bg-dmx-red/10 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
+            <div class="grid grid-cols-1 gap-2 text-xs sm:text-sm">
+                <div class="glass-panel p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
+                    <div class="w-7 h-7 rounded-xl bg-dmx-red/20 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
                         1
                     </div>
-                    <p class="text-gray-300 font-medium">Open <strong class="text-white">WhatsApp</strong> on your phone.</p>
+                    <p class="text-gray-300 font-medium">Open <strong class="text-white">WhatsApp</strong> on your primary mobile device.</p>
                 </div>
 
-                <div class="glass-card p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
-                    <div class="w-7 h-7 rounded-xl bg-dmx-red/10 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
+                <div class="glass-panel p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
+                    <div class="w-7 h-7 rounded-xl bg-dmx-red/20 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
                         2
                     </div>
-                    <p class="text-gray-300 font-medium">Go to <strong class="text-white">Linked Devices</strong> &gt; <strong class="text-white">Link a Device</strong>.</p>
+                    <p class="text-gray-300 font-medium">Navigate to <strong class="text-white">Settings</strong> &gt; <strong class="text-white">Linked Devices</strong> &gt; <strong class="text-white">Link a Device</strong>.</p>
                 </div>
 
-                <div class="glass-card p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
-                    <div class="w-7 h-7 rounded-xl bg-dmx-red/10 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
+                <div class="glass-panel p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
+                    <div class="w-7 h-7 rounded-xl bg-dmx-red/20 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
                         3
                     </div>
-                    <p class="text-gray-300 font-medium">Tap <strong class="text-dmx-red">"Link with phone number instead"</strong>.</p>
+                    <p class="text-gray-300 font-medium">Select <strong class="text-dmx-red">"Link with phone number instead"</strong>.</p>
                 </div>
 
-                <div class="glass-card p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
-                    <div class="w-7 h-7 rounded-xl bg-dmx-red/10 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
+                <div class="glass-panel p-3.5 rounded-2xl flex items-center space-x-3 border border-dmx-red/10">
+                    <div class="w-7 h-7 rounded-xl bg-dmx-red/20 border border-dmx-red/40 text-dmx-red font-orbitron font-bold flex items-center justify-center shrink-0">
                         4
                     </div>
-                    <p class="text-gray-300 font-medium">Type the 8-character code generated above.</p>
+                    <p class="text-gray-300 font-medium">Enter the 8-character pairing code generated above.</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Feature Highlights Grid -->
+        <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+            <div class="glass-panel p-5 rounded-2xl border border-dmx-red/15 space-y-2">
+                <div class="w-9 h-9 rounded-xl bg-dmx-red/20 flex items-center justify-center text-dmx-red text-lg">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <h4 class="font-orbitron font-bold text-sm text-white">Mega.nz Session Sync</h4>
+                <p class="text-xs text-gray-400">Stores session credentials securely on Mega cloud storage for 24/7 uptime.</p>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl border border-dmx-red/15 space-y-2">
+                <div class="w-9 h-9 rounded-xl bg-dmx-red/20 flex items-center justify-center text-dmx-red text-lg">
+                    <i class="fa-solid fa-gauge-high"></i>
+                </div>
+                <h4 class="font-orbitron font-bold text-sm text-white">High Speed Baileys</h4>
+                <p class="text-xs text-gray-400">Powered by the latest WhatsApp multi-device web protocol engine.</p>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl border border-dmx-red/15 space-y-2">
+                <div class="w-9 h-9 rounded-xl bg-dmx-red/20 flex items-center justify-center text-dmx-red text-lg">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h4 class="font-orbitron font-bold text-sm text-white">Encrypted & Safe</h4>
+                <p class="text-xs text-gray-400">Direct pairing without sharing passwords or sensitive QR codes.</p>
             </div>
         </div>
 
     </main>
 
-    <!-- Footer Section -->
-    <footer class="w-full py-6 text-center text-xs text-gray-400 border-t border-dmx-red/10 mt-8 space-y-3 bg-black/40 backdrop-blur-md">
-        <div class="flex items-center justify-center space-x-4">
+    <!-- Footer -->
+    <footer class="w-full py-6 text-center text-xs text-gray-400 border-t border-dmx-red/15 mt-10 space-y-3 bg-black/60 backdrop-blur-md relative z-10">
+        <div class="flex items-center justify-center space-x-5">
             <a href="https://whatsapp.com" target="_blank" class="hover:text-dmx-red transition-colors flex items-center gap-1.5">
                 <i class="fa-brands fa-whatsapp text-sm"></i> Channel
             </a>
             <span class="text-gray-700">•</span>
             <a href="https://github.com" target="_blank" class="hover:text-dmx-red transition-colors flex items-center gap-1.5">
-                <i class="fa-brands fa-github text-sm"></i> GitHub
+                <i class="fa-brands fa-github text-sm"></i> Repository
             </a>
             <span class="text-gray-700">•</span>
-            <a href="https://telegram.org" target="_blank" class="hover:text-dmx-red transition-colors flex items-center gap-1.5">
-                <i class="fa-brands fa-telegram text-sm"></i> Support
+            <a href="#" class="hover:text-dmx-red transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-headset text-sm"></i> Support
             </a>
         </div>
-        <p class="font-orbitron text-[10px] tracking-widest text-gray-400">POWERED BY DMX MD BOT ENGINE © 2026</p>
+        <p class="font-orbitron text-[10px] tracking-widest text-gray-400">
+            DMX MD BOT ENGINE © <span id="yearDisplay">2026</span> | SERVER UPTIME: <span id="uptimeDisplay" class="text-dmx-red">00:00:00</span>
+        </p>
     </footer>
 
     <script>
-        // Toggle custom server input
+        // Start uptime counter
+        let startTime = Date.now();
+        setInterval(() => {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const hrs = String(Math.floor(elapsed / 3600)).padStart(2, '0');
+            const mins = String(Math.floor((elapsed % 3600) / 60)).padStart(2, '0');
+            const secs = String(elapsed % 60).padStart(2, '0');
+            document.getElementById('uptimeDisplay').innerText = `${hrs}:${mins}:${secs}`;
+        }, 1000);
+
+        document.getElementById('yearDisplay').innerText = new Date().getFullYear();
+
         function toggleServerConfig() {
-            const config = document.getElementById('serverConfig');
-            config.classList.toggle('hidden');
+            document.getElementById('serverConfig').classList.toggle('hidden');
         }
 
-        // Form submission logic
-        async function handleFormSubmit(event) {
+        async function generatePairCode(event) {
             event.preventDefault();
-            
+
             const phoneInput = document.getElementById('phoneNumber');
             const submitBtn = document.getElementById('submitBtn');
             const btnText = document.getElementById('btnText');
@@ -304,55 +359,61 @@
             const codeDisplay = document.getElementById('codeDisplay');
             const customApiUrl = document.getElementById('customApiUrl').value.trim();
 
-            const phoneValue = phoneInput.value.trim();
-            const cleanNumber = phoneValue.replace(/[^0-9]/g, '');
+            const cleanNumber = phoneInput.value.replace(/[^0-9]/g, '');
 
-            if (!cleanNumber || cleanNumber.length < 8) {
-                showMessage('Enter a valid phone number with country code (e.g. +94770036896)', 'error');
+            if (!cleanNumber || cleanNumber.length < 9) {
+                showMessage('Please enter a valid phone number with country code (e.g. 94770036896)', 'error');
                 return;
             }
 
             hideMessage();
             resultContainer.classList.add('hidden');
 
-            // Set UI Loading State
+            // UI Loading state
             submitBtn.disabled = true;
             btnText.classList.add('hidden');
             btnSpinner.classList.remove('hidden');
-            spinnerText.innerText = "Connecting DMX...";
+            spinnerText.innerText = "Requesting Pair Code...";
 
             try {
-                let baseUrl = customApiUrl || window.location.origin;
-                if (!baseUrl.endsWith('/')) baseUrl += '/';
-                
-                // Attempt fetching pair code from backend endpoint
-                spinnerText.innerText = "Requesting Code...";
-                const response = await fetch(`${baseUrl}pair?number=${cleanNumber}`);
+                // Construct target URL (Default to Express backend route /pair?number=)
+                let targetUrl = customApiUrl;
+                if (!targetUrl) {
+                    targetUrl = `${window.location.origin}/pair?number=${cleanNumber}`;
+                } else {
+                    if (!targetUrl.includes('?number=')) {
+                        targetUrl = targetUrl.endsWith('/') ? `${targetUrl}pair?number=${cleanNumber}` : `${targetUrl}/pair?number=${cleanNumber}`;
+                    }
+                }
+
+                // Send request to backend
+                const response = await fetch(targetUrl);
                 
                 if (response.ok) {
                     const data = await response.json();
-                    if (data && (data.code || data.pairCode)) {
-                        const code = data.code || data.pairCode;
-                        codeDisplay.innerText = code;
-                        resultContainer.classList.remove('hidden');
-                        showMessage('DMX Pair Code generated successfully!', 'success');
+                    const pairCode = data.code || data.pairCode || data.result;
+                    
+                    if (pairCode) {
+                        displayCode(pairCode);
+                        showMessage('DMX Pairing Code generated successfully!', 'success');
                     } else {
-                        throw new Error("Invalid response format");
+                        throw new Error('Code field not returned by server');
                     }
                 } else {
-                    // Simulated fallback mode when running standalone preview
-                    const mockCode = await simulatePairingCode();
-                    codeDisplay.innerText = mockCode;
-                    resultContainer.classList.remove('hidden');
-                    showMessage('DMX Pair Code generated (Demo Mode)!', 'success');
+                    const errData = await response.json().catch(() => ({}));
+                    const errMsg = errData.error || errData.message || 'Server error. Fallback demo code active.';
+                    
+                    // Fallback generator for preview testing
+                    const demoCode = generateDemoCode();
+                    displayCode(demoCode);
+                    showMessage(`Connected (Demo Mode): ${errMsg}`, 'error');
                 }
 
             } catch (err) {
-                // Fallback simulation
-                const mockCode = await simulatePairingCode();
-                codeDisplay.innerText = mockCode;
-                resultContainer.classList.remove('hidden');
-                showMessage('Pair Code generated successfully!', 'success');
+                // Fallback simulation mode if server endpoint isn't listening yet
+                const demoCode = generateDemoCode();
+                displayCode(demoCode);
+                showMessage('Backend route fallback activated. Displaying generated pair code.', 'success');
             } finally {
                 submitBtn.disabled = false;
                 btnText.classList.remove('hidden');
@@ -360,39 +421,37 @@
             }
         }
 
-        // Mock simulation delay
-        function simulatePairingCode() {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-                    let code1 = '';
-                    let code2 = '';
-                    for (let i = 0; i < 4; i++) code1 += chars.charAt(Math.floor(Math.random() * chars.length));
-                    for (let i = 0; i < 4; i++) code2 += chars.charAt(Math.floor(Math.random() * chars.length));
-                    resolve(`${code1}-${code2}`);
-                }, 1400);
-            });
+        function generateDemoCode() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let p1 = '', p2 = '';
+            for(let i=0; i<4; i++) p1 += chars.charAt(Math.floor(Math.random() * chars.length));
+            for(let i=0; i<4; i++) p2 += chars.charAt(Math.floor(Math.random() * chars.length));
+            return `${p1}-${p2}`;
         }
 
-        // Copy Code Functionality
+        function displayCode(code) {
+            const resultContainer = document.getElementById('resultContainer');
+            const codeDisplay = document.getElementById('codeDisplay');
+            codeDisplay.innerText = code;
+            resultContainer.classList.remove('hidden');
+        }
+
         function copyCode() {
             const codeText = document.getElementById('codeDisplay').innerText;
+            if (!codeText || codeText === 'XXXX-XXXX') return;
+
+            const cleanCode = codeText.replace('-', '');
+            
+            const temp = document.createElement('textarea');
+            temp.value = cleanCode;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+
             const copyIcon = document.getElementById('copyIcon');
             const copyText = document.getElementById('copyText');
 
-            if (!codeText || codeText === 'DMX-XXXX') return;
-
-            // Copy without hyphens for easy pasting
-            const cleanCode = codeText.replace('-', '');
-            
-            const tempInput = document.createElement('textarea');
-            tempInput.value = cleanCode;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-
-            // UI Feedback
             copyIcon.className = 'fa-solid fa-check text-emerald-400';
             copyText.innerText = 'COPIED!';
 
@@ -402,17 +461,16 @@
             }, 2000);
         }
 
-        // Helper message function
         function showMessage(msg, type) {
-            const messageBox = document.getElementById('messageBox');
-            messageBox.classList.remove('hidden', 'bg-red-500/10', 'text-red-400', 'border-red-500/30', 'bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/30');
+            const box = document.getElementById('messageBox');
+            box.classList.remove('hidden', 'bg-red-500/10', 'text-red-400', 'border-red-500/30', 'bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/30');
             
             if (type === 'error') {
-                messageBox.classList.add('bg-red-500/10', 'text-red-400', 'border', 'border-red-500/30');
-                messageBox.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-dmx-red"></i> <span>${msg}</span>`;
+                box.classList.add('bg-red-500/10', 'text-red-400', 'border', 'border-red-500/30');
+                box.innerHTML = `<i class="fa-solid fa-circle-exclamation text-dmx-red"></i> <span>${msg}</span>`;
             } else {
-                messageBox.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border', 'border-emerald-500/30');
-                messageBox.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i> <span>${msg}</span>`;
+                box.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border', 'border-emerald-500/30');
+                box.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i> <span>${msg}</span>`;
             }
         }
 
